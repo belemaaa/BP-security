@@ -54,7 +54,7 @@ ROOT_URLCONF = 'BookPadProj.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['bookpad/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
