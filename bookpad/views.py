@@ -38,5 +38,31 @@ def signup(request):
         
 
 def login(request):
-    pass
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+
+        try:
+            user = User.objects.get(username=username)
+            hashed_password = user.password
+
+            # Compare the provided password with the hashed password
+            if bcrypt.checkpw(password.encode('utf-8'), hashed_password.encode('utf-8')):
+                return redirect('home')
+            
+            else:
+                #handle the invalid login attempt
+                context = {
+                    'error': 'Invalid username or password'
+                }
+                return render(request, 'login.html', context)
+
+        except User.DoesNotExist:
+            context = {
+                'error': 'Invalid username or password'
+            }
+            return render(request, 'login.html', context)
+
+    return render(request, 'login.html')
+
 
