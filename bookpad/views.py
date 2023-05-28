@@ -14,14 +14,14 @@ def signup(request):
 
 
          # Generate encryption key
-        encryption_key = Fernet.generate_key()
-        cipher = Fernet(encryption_key)
+        # encryption_key = Fernet.generate_key()
+        # cipher = Fernet(encryption_key)
 
         # Encrypt the password
-        encrypted_password = cipher.encrypt(password.encode('utf-8'))
+        # encrypted_password = cipher.encrypt(password.encode('utf-8'))
 
-        # Hash the encrypted password
-        hashed_password = bcrypt.hashpw(encrypted_password, bcrypt.gensalt())
+        # Hash the password
+        hashed_password = bcrypt.hashpw(password, bcrypt.gensalt())
        
        
         #create a user
